@@ -1,0 +1,41 @@
+name: Sync Airtable -> carte
+
+on:
+  schedule:
+    - cron: "17 4 * * *"      # tous les jours a 04h17 UTC (06h17 Paris l'ete)
+  workflow_dispatch:           # bouton "Run workflow" pour forcer une maj
+
+permissions:
+  contents: write              # necessaire pour committer le geojson
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Generer profs.geojson
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_TABLE: ${{ secrets.AIRTABLE_TABLE }}
+        run: python scripts/sync.py
+
+      - name: Committer si le fichier a change
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/profs.geojson docs/.geocache.json
+          git diff --staged --quiet && echo "aucun changement" && exit 0
+          git commit -m "maj carte $(date -u +%F)"
+          git push

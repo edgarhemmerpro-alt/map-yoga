@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notre communauté à travers le monde</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<style>
+  @font-face{font-family:Poppins;font-weight:400;font-display:swap;src:url(fonts/poppins-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:Poppins;font-weight:500;font-display:swap;src:url(fonts/poppins-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:Poppins;font-weight:600;font-display:swap;src:url(fonts/poppins-latin-600-normal.woff2) format('woff2')}
+
+  :root{
+    --creme:#F7F4EF; --panneau:#EFEBE3; --terre:#E3DED2; --trait:#D5CFC0;
+    --vert:#3C5133; --vert-clair:#4C6742; --encre:#17171A; --gris:#78756D;
+    --blanc:#fff; --ombre:0 4px 24px rgba(30,28,20,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Poppins,system-ui,sans-serif;background:var(--creme);color:var(--encre);-webkit-font-smoothing:antialiased}
+
+  .enveloppe{display:grid;grid-template-columns:300px 1fr;gap:44px;
+    align-items:center;padding:40px;min-height:100vh;max-width:1440px;margin:0 auto}
+
+  /* ---------- panneau gauche ---------- */
+  h1{font-size:34px;line-height:1.18;font-weight:500;letter-spacing:-.02em;margin-bottom:18px}
+  .sous{font-size:14px;line-height:1.55;color:var(--gris);margin-bottom:38px;max-width:26ch}
+  .stat{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .rond{width:44px;height:44px;border-radius:50%;background:var(--panneau);
+    display:grid;place-items:center;flex:0 0 44px}
+  .rond svg{width:19px;height:19px;stroke:var(--encre);stroke-width:1.5;fill:none}
+  .stat b{display:block;font-size:16px;font-weight:600;line-height:1.3}
+  .stat span{display:block;font-size:13px;color:var(--gris);line-height:1.4}
+
+  /* ---------- carte ---------- */
+  .cadre{position:relative;height:calc(100vh - 80px);min-height:520px;
+    border-radius:20px;overflow:hidden;background:var(--panneau)}
+  #carte{position:absolute;inset:0;background:var(--panneau);outline:none}
+  .leaflet-container{font-family:inherit;background:var(--panneau)}
+
+  .pays{fill:var(--terre);stroke:var(--trait);stroke-width:.7}
+
+  /* pastilles de regroupement */
+  .grappe{background:var(--vert);color:#fff;border-radius:50%;
+    display:grid;place-items:center;font-size:13px;font-weight:600;
+    box-shadow:0 2px 10px rgba(40,60,35,.35);border:2px solid rgba(255,255,255,.55);
+    transition:transform .15s}
+  .grappe:hover{transform:scale(1.08)}
+  .point{width:9px;height:9px;border-radius:50%;background:#26261F;
+    border:1.5px solid rgba(255,255,255,.7);transition:transform .15s}
+  .point:hover{transform:scale(1.5)}
+
+  /* boutons flottants */
+  .zoom{position:absolute;top:16px;left:16px;z-index:600;background:var(--blanc);
+    border-radius:11px;box-shadow:var(--ombre);overflow:hidden}
+  .zoom button{display:block;width:34px;height:34px;border:0;background:none;
+    font-size:17px;color:var(--encre);cursor:pointer;line-height:34px}
+  .zoom button:hover{background:var(--panneau)}
+  .zoom button+button{border-top:1px solid #EDE9E0}
+
+  .flottant{position:absolute;z-index:600;background:var(--blanc);border:0;
+    border-radius:11px;box-shadow:var(--ombre);cursor:pointer;
+    font:500 13px Poppins,sans-serif;color:var(--encre);
+    display:flex;align-items:center;gap:8px;padding:11px 15px}
+  .flottant:hover{background:#FCFBF8}
+  .flottant svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none}
+  #bFiltres{top:16px;right:16px}
+  #bPosition{bottom:16px;right:16px}
+
+  /* panneau filtres */
+  #filtres{position:absolute;top:60px;right:16px;z-index:601;width:216px;
+    background:var(--blanc);border-radius:14px;box-shadow:var(--ombre);
+    padding:16px;display:none}
+  #filtres.ouvert{display:block}
+  #filtres h2{font-size:11px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.09em;color:var(--gris);margin:0 0 9px}
+  #filtres h2+h2{margin-top:16px}
+  #filtres label{display:flex;align-items:center;gap:8px;font-size:13px;
+    padding:3px 0;cursor:pointer}
+  #filtres input{accent-color:var(--vert);width:14px;height:14px}
+  #filtres select{width:100%;font:400 13px Poppins,sans-serif;padding:7px 9px;
+    border:1px solid #E6E2D8;border-radius:8px;background:var(--blanc);color:var(--encre)}
+  #raz{margin-top:14px;width:100%;padding:8px;border:0;border-radius:8px;
+    background:var(--panneau);font:500 12px Poppins,sans-serif;cursor:pointer;color:var(--encre)}
+  #raz:hover{background:#E7E2D8}
+
+  /* fiche prof */
+  .leaflet-popup-content-wrapper{border-radius:14px;box-shadow:var(--ombre);padding:0}
+  .leaflet-popup-content{margin:0;width:224px!important;font-size:13px}
+  .leaflet-popup-tip{box-shadow:none}
+  .leaflet-popup-close-button{color:var(--gris)!important;font-size:19px!important;
+    padding:9px 9px 0 0!important}
+  .fiche{display:flex;gap:12px;padding:14px}
+  .av{width:56px;height:56px;border-radius:10px;flex:0 0 56px;background:var(--panneau);
+    display:grid;place-items:center;overflow:hidden}
+  .av img{width:100%;height:100%;object-fit:contain;padding:8px}
+  .av b{font-size:17px;font-weight:600;color:var(--vert);letter-spacing:.02em}
+  .fiche h3{font-size:14px;font-weight:600;margin:0 0 1px;padding-right:14px}
+  .lieu{font-size:11.5px;color:var(--gris);margin-bottom:9px}
+  .liens{display:flex;gap:8px;margin-top:10px}
+  .liens a{font-size:11.5px;font-weight:500;color:var(--vert);text-decoration:none;
+    border-bottom:1px solid rgba(60,81,51,.28);padding-bottom:1px}
+  .liens a:hover{border-bottom-color:var(--vert)}
+
+  .legende{position:absolute;bottom:16px;left:16px;z-index:600;font-size:11.5px;
+    color:var(--gris);background:rgba(247,244,239,.85);padding:6px 11px;border-radius:8px}
+
+  /* animation markercluster (extrait minimal, evite d'embarquer la CSS complete) */
+  .leaflet-cluster-anim .leaflet-marker-icon,.leaflet-cluster-anim .leaflet-marker-shadow{
+    transition:transform .25s cubic-bezier(0,0,.25,1),opacity .25s}
+
+  @media (max-width:900px){
+    .enveloppe{grid-template-columns:1fr;gap:26px;padding:22px}
+    h1{font-size:26px}.sous{margin-bottom:24px}
+    .stat{margin-bottom:14px}
+    .cadre{height:66vh;min-height:400px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  :focus-visible{outline:2px solid var(--vert);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="enveloppe">
+  <div>
+    <h1>Notre communauté<br>à travers le monde</h1>
+    <p class="sous">Trouvez un professeur Change Perspective près de chez vous.</p>
+
+    <div class="stat"><div class="rond"><svg viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+      <div><b id="nbProfs">—</b><span>Professeurs référencés</span></div></div>
+
+    <div class="stat"><div class="rond"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></div>
+      <div><b id="nbPays">—</b><span>Pays</span></div></div>
+
+    <div class="stat"><div class="rond"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+      <div><b>Une communauté</b><span>Engagée et bienveillante</span></div></div>
+
+    <div class="stat"><div class="rond"><svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+      <div><b>Formés selon</b><span>la méthode CPY</span></div></div>
+  </div>
+
+  <div class="cadre">
+    <div id="carte" role="application" aria-label="Carte des professeurs"></div>
+
+    <div class="zoom">
+      <button id="zPlus"  aria-label="Zoomer">+</button>
+      <button id="zMoins" aria-label="Dézoomer">−</button>
+    </div>
+
+    <button class="flottant" id="bFiltres" aria-expanded="false">Filtres
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+
+    <div id="filtres" role="group" aria-label="Filtres">
+      <h2>Pays</h2><select id="selPays"><option value="">Tous les pays</option></select>
+      <button id="raz">Tout afficher</button>
+    </div>
+
+    <button class="flottant" id="bPosition">
+      <svg viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      Ma position</button>
+
+    <div class="legende" id="legende">Cliquez sur un point pour découvrir le professeur.</div>
+  </div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/leaflet.markercluster.js"></script>
+<script>
+(function(){
+  "use strict";
+  var carte = L.map('carte', {
+    zoomControl:false, attributionControl:false,
+    minZoom:2, maxZoom:12, worldCopyJump:true,
+    center:[26,6], zoom:2
+  });
+
+  document.getElementById('zPlus').onclick  = function(){ carte.zoomIn(); };
+  document.getElementById('zMoins').onclick = function(){ carte.zoomOut(); };
+
+  // Fond de carte rendu depuis le repo : aucune requête vers un fournisseur
+  // de tuiles, donc aucune IP de visiteur transmise à un tiers.
+  fetch('world.geojson').then(function(r){ return r.json(); }).then(function(w){
+    L.geoJSON(w, {
+      interactive:false,
+      style:function(){ return {className:'pays'}; }
+    }).addTo(carte).bringToBack();
+  });
+
+  var groupes = L.markerClusterGroup({
+    maxClusterRadius:44,
+    showCoverageOnHover:false,
+    spiderfyDistanceMultiplier:1.4,
+    iconCreateFunction:function(c){
+      var n = c.getChildCount(), t = n<10?34:n<50?40:46;
+      return L.divIcon({ html:'<div class="grappe" style="width:'+t+'px;height:'+t+'px">'+n+'</div>',
+                         className:'', iconSize:[t,t] });
+    }
+  });
+
+  function el(t, cls, texte){
+    var n = document.createElement(t);
+    if(cls) n.className = cls;
+    if(texte != null) n.textContent = texte;   // textContent : jamais d'injection
+    return n;
+  }
+
+  function lienSur(u){                       // n'accepte que http(s), coupe javascript:
+    try{ var p = new URL(u); return (p.protocol==='https:'||p.protocol==='http:') ? p.href : null; }
+    catch(e){ return null; }
+  }
+
+  // Construite en DOM et non par concaténation : les noms, villes et pseudos
+  // viennent d'un formulaire public, ils ne doivent jamais être interprétés
+  // comme du HTML.
+  function fiche(p){
+    var f = el('div','fiche');
+    var av = el('div','av');
+
+    if(p.ico){
+      var img = el('img');
+      img.src = p.ico; img.alt = ''; img.loading = 'lazy';
+      img.onerror = function(){ av.replaceChildren(el('b', null, p.ini || '?')); };
+      av.appendChild(img);
+    } else {
+      av.appendChild(el('b', null, p.ini || '?'));
+    }
+    f.appendChild(av);
+
+    var d = el('div');
+    d.appendChild(el('h3', null, p.nom));
+    d.appendChild(el('div','lieu', (p.ville||'') + (p.pays ? ', '+p.pays : '')));
+
+    var s = p.site ? lienSur(p.site) : null,
+        i = p.insta ? lienSur(p.insta) : null;
+    if(s || i){
+      var box = el('div','liens');
+      [[s,'Site'],[i,'Instagram']].forEach(function(x){
+        if(!x[0]) return;
+        var a = el('a', null, x[1]);
+        a.href = x[0]; a.target = '_blank';
+        a.rel = 'noopener noreferrer nofollow';
+        box.appendChild(a);
+      });
+      d.appendChild(box);
+    }
+    f.appendChild(d);
+    return f;
+  }
+
+  var tous = [];
+
+  fetch('profs.geojson').then(function(r){ return r.json(); }).then(function(d){
+    document.getElementById('nbProfs').textContent = (d.stats&&d.stats.profs) || d.features.length;
+    document.getElementById('nbPays').textContent  = (d.stats&&d.stats.pays)  || '';
+
+    d.features.forEach(function(f){
+      var p = f.properties, c = f.geometry.coordinates;
+      var m = L.marker([c[1],c[0]], {
+        icon: L.divIcon({className:'', html:'<div class="point"></div>', iconSize:[9,9]}),
+        keyboard:true, title:p.nom
+      });
+      m.bindPopup(fiche(p), {closeButton:true, offset:[0,-2], maxWidth:240});
+      m.props = p;
+      tous.push(m);
+    });
+
+    // filtre construit depuis les données réelles, pas une liste figée
+    var pays = {};
+    tous.forEach(function(m){
+      if(m.props.pays) pays[m.props.pays]=(pays[m.props.pays]||0)+1;
+    });
+
+    var sp = document.getElementById('selPays');
+    Object.keys(pays).sort().forEach(function(k){
+      sp.appendChild(el('option', null, k + ' (' + pays[k] + ')')).value = k;
+    });
+
+    sp.addEventListener('change', appliquer);
+    document.getElementById('raz').onclick = function(){ sp.value=''; appliquer(); };
+
+    appliquer();
+    carte.addLayer(groupes);
+  }).catch(function(){
+    document.getElementById('legende').textContent =
+      'Les données de la carte n’ont pas pu être chargées. Réessayez dans un instant.';
+  });
+
+  function appliquer(){
+    var pays = document.getElementById('selPays').value;
+    var gardes = tous.filter(function(m){ return !pays || m.props.pays===pays; });
+    groupes.clearLayers();
+    groupes.addLayers(gardes);
+    document.getElementById('legende').textContent = gardes.length
+      ? gardes.length+' professeur'+(gardes.length>1?'s':'')+' · cliquez sur un point'
+      : 'Aucun professeur ne correspond à ces filtres.';
+  }
+
+  var bf = document.getElementById('bFiltres'), pf = document.getElementById('filtres');
+  bf.onclick = function(e){
+    e.stopPropagation();
+    var o = pf.classList.toggle('ouvert');
+    bf.setAttribute('aria-expanded', o);
+  };
+  document.addEventListener('click', function(e){
+    if(!pf.contains(e.target) && e.target!==bf){ pf.classList.remove('ouvert'); bf.setAttribute('aria-expanded',false); }
+  });
+
+  // Géolocalisation : l'API du navigateur demande le consentement, et la
+  // position ne quitte jamais la page (aucun appel réseau).
+  document.getElementById('bPosition').onclick = function(){
+    var b = this, l = document.getElementById('legende');
+    if(!navigator.geolocation){ l.textContent='Votre navigateur ne gère pas la géolocalisation.'; return; }
+    b.disabled = true;
+    navigator.geolocation.getCurrentPosition(function(pos){
+      b.disabled = false;
+      carte.flyTo([pos.coords.latitude, pos.coords.longitude], 7, {duration:1.1});
+      var moi = L.latLng(pos.coords.latitude, pos.coords.longitude), meilleur=null, dmin=Infinity;
+      tous.forEach(function(m){
+        var d = moi.distanceTo(m.getLatLng());
+        if(d<dmin){ dmin=d; meilleur=m; }
+      });
+      if(meilleur) l.textContent = 'Le plus proche : '+meilleur.props.nom+' à '
+        + Math.round(dmin/1000) + ' km ('+meilleur.props.ville+').';
+    }, function(){
+      b.disabled = false;
+      l.textContent = 'Position indisponible. Autorisez la géolocalisation dans votre navigateur.';
+    }, {timeout:8000});
+  };
+})();
+</script>
+</body>
+</html>
