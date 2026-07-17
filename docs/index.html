@@ -51,9 +51,12 @@
     box-shadow:0 2px 10px rgba(40,60,35,.35);border:2px solid rgba(255,255,255,.55);
     transition:transform .15s}
   .grappe:hover{transform:scale(1.08)}
-  .point{width:9px;height:9px;border-radius:50%;background:#26261F;
-    border:1.5px solid rgba(255,255,255,.7);transition:transform .15s}
-  .point:hover{transform:scale(1.5)}
+  /* zone de clic large et invisible : cible tactile confortable */
+  .point{width:28px;height:28px;display:grid;place-items:center;cursor:pointer}
+  .point::before{content:"";width:14px;height:14px;border-radius:50%;
+    background:#26261F;border:2px solid rgba(255,255,255,.8);
+    box-shadow:0 1px 4px rgba(30,28,20,.35);transition:transform .15s}
+  .point:hover::before{transform:scale(1.35)}
 
   /* boutons flottants */
   .zoom{position:absolute;top:16px;left:16px;z-index:600;background:var(--blanc);
@@ -292,7 +295,8 @@
     d.features.forEach(function(f){
       var p = f.properties, c = f.geometry.coordinates;
       var m = L.marker([c[1],c[0]], {
-        icon: L.divIcon({className:'', html:'<div class="point"></div>', iconSize:[9,9]}),
+        icon: L.divIcon({className:'', html:'<div class="point"></div>',
+                         iconSize:[28,28], iconAnchor:[14,14]}),
         keyboard:true, title:p.nom
       });
       m.bindPopup(fiche(p), {closeButton:true, offset:[0,-2], maxWidth:240});
