@@ -38,6 +38,12 @@
   .leaflet-container{font-family:inherit;background:var(--panneau)}
 
   .pays{fill:var(--terre);stroke:var(--trait);stroke-width:.7}
+  /* couches de detail (France) revelees progressivement au zoom, servies
+     depuis le repo : toujours aucune requete vers un tiers */
+  .region{fill:none;stroke:#C9C2B0;stroke-width:.9}
+  .dept{fill:none;stroke:#CBC4B3;stroke-width:.55;stroke-dasharray:2 2}
+  .commune{fill:var(--vert);fill-opacity:.05;stroke:var(--vert-clair);
+    stroke-width:1;stroke-opacity:.55}
 
   /* pastilles de regroupement */
   .grappe{background:var(--vert);color:#fff;border-radius:50%;
@@ -177,12 +183,44 @@
 
   // Fond de carte rendu depuis le repo : aucune requête vers un fournisseur
   // de tuiles, donc aucune IP de visiteur transmise à un tiers.
-  fetch('world.geojson').then(function(r){ return r.json(); }).then(function(w){
-    L.geoJSON(w, {
-      interactive:false,
-      style:function(){ return {className:'pays'}; }
-    }).addTo(carte).bringToBack();
-  });
+  //
+  // Détail progressif : les contours France (régions → départements →
+  // communes) n'apparaissent qu'en zoomant, pour rester épuré de loin et
+  // donner des repères une fois plongé sur une ville. Tout est servi depuis
+  // le repo, la règle « zéro requête tierce » tient toujours.
+  var couches = {};
+  var SEUILS = { pays:0, region:5, dept:7, commune:10 };  // zoom d'apparition
+  var ORDRE = ['pays','region','dept','commune'];         // empilement (pays au fond)
+
+  function chargeFond(fichier, cls, cle){
+    return fetch(fichier).then(function(r){ return r.json(); }).then(function(g){
+      couches[cle] = L.geoJSON(g, {
+        interactive:false,
+        style:function(){ return {className:cls}; }
+      });
+    });
+  }
+
+  function majFond(){
+    var z = carte.getZoom();
+    ORDRE.forEach(function(cle){
+      var c = couches[cle]; if(!c) return;
+      var visible = z >= SEUILS[cle];
+      if(visible && !carte.hasLayer(c)) c.addTo(carte);
+      else if(!visible && carte.hasLayer(c)) carte.removeLayer(c);
+    });
+    ORDRE.forEach(function(cle){                 // réordonne les contours visibles
+      if(couches[cle] && carte.hasLayer(couches[cle])) couches[cle].bringToFront();
+    });
+  }
+
+  Promise.all([
+    chargeFond('world.geojson',        'pays',    'pays'),
+    chargeFond('fr-regions.geojson',   'region',  'region'),
+    chargeFond('fr-departements.geojson','dept',  'dept'),
+    chargeFond('fr-communes.geojson',  'commune', 'commune')
+  ]).then(majFond);
+  carte.on('zoomend', majFond);
 
   var groupes = L.markerClusterGroup({
     maxClusterRadius:44,
