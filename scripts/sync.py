@@ -47,7 +47,7 @@ API = f"https://api.airtable.com/v0/{BASE_ID}/{requests.utils.quote(TABLE)}"
 HEAD = {"Authorization": f"Bearer {TOKEN}"}
 
 # <<< A PERSONNALISER : Nominatim exige un contact reel et bloque les anonymes
-UA = {"User-Agent": "carte-profs-yoga/1.0 (contact: ton@email.fr)"}
+UA = {"User-Agent": "carte-profs-yoga/1.0 (contact: edgarhemmerpro@gmail.com)"}
 
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 PAYS_BAN = {"France", "La Réunion", "Guyane française", "Martinique",
