@@ -209,18 +209,39 @@ def lire_records():
         time.sleep(0.25)  # Airtable : 5 req/s max par base
 
 
+def coord_valide(lat, lon):
+    """Renvoie (lat, lon) si ce sont de vrais degres WGS84, sinon None.
+
+    Garde-fou contre des coords Airtable corrompues (ex : point decimal
+    perdu, 48.85341 -> 4885341). Toute valeur hors plage est rejetee et
+    provoquera un re-geocodage.
+    """
+    try:
+        lat, lon = float(lat), float(lon)
+    except (TypeError, ValueError):
+        return None
+    if -90 <= lat <= 90 and -180 <= lon <= 180:
+        return lat, lon
+    return None
+
+
 def ecrire_coords(maj):
     if not maj:
         return
     if DRY_RUN:
         log(f"[dry-run] {len(maj)} lignes auraient ete mises a jour")
         return
-    for i in range(0, len(maj), 10):
-        r = requests.patch(API, headers={**HEAD, "Content-Type": "application/json"},
-                           json={"records": maj[i:i + 10]}, timeout=30)
-        r.raise_for_status()
-        time.sleep(0.25)
-    log(f"{len(maj)} lignes mises a jour dans Airtable")
+    try:
+        for i in range(0, len(maj), 10):
+            r = requests.patch(API, headers={**HEAD, "Content-Type": "application/json"},
+                               json={"records": maj[i:i + 10]}, timeout=30)
+            r.raise_for_status()
+            time.sleep(0.25)
+        log(f"{len(maj)} lignes mises a jour dans Airtable")
+    except Exception as e:
+        # non bloquant : la carte doit se regenerer meme si le token est en
+        # lecture seule ou si Airtable refuse l'ecriture
+        log(f"  ! ecriture Airtable ignoree : {e}")
 
 
 # ------------------------------------------------------------- geocodage
@@ -284,19 +305,23 @@ def main():
 
         ville = (f.get(F_VILLE) or "").strip()
         pays = (f.get(F_PAYS) or "").strip()
-        lat, lon = f.get(F_LAT), f.get(F_LON)
+        # Ne fait confiance aux coords Airtable que si ce sont de vrais degres
+        # WGS84. Des valeurs hors plage (ex : virgule perdue -> 4885341 au lieu
+        # de 48.85341) sont ignorees et la ville est re-geocodee.
+        coord = coord_valide(f.get(F_LAT), f.get(F_LON))
 
-        if (lat is None or lon is None) and ville and pays:
+        if coord is None and ville and pays:
             log(f"  geocodage : {ville}, {pays}")
             res = geocode(ville, pays, cache)
             if res:
-                lat, lon = res
-                maj.append({"id": rec["id"], "fields": {F_LAT: lat, F_LON: lon}})
+                coord = (res[0], res[1])
+                maj.append({"id": rec["id"], "fields": {F_LAT: res[0], F_LON: res[1]}})
                 st["geocodes"] += 1
 
-        if lat is None or lon is None:
+        if coord is None:
             st["sans_coord"] += 1
             continue
+        lat, lon = coord
 
         site = url_site(f.get(F_SITE))
         insta = url_insta(f.get(F_INSTA))

@@ -294,6 +294,10 @@
 
     d.features.forEach(function(f){
       var p = f.properties, c = f.geometry.coordinates;
+      var lon = c[0], lat = c[1];
+      // garde-fou : une coordonnée hors plage (fichier corrompu) est ignorée
+      // plutôt que de projeter le marqueur hors carte
+      if(!(lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180)) return;
       var m = L.marker([c[1],c[0]], {
         icon: L.divIcon({className:'', html:'<div class="point"></div>',
                          iconSize:[28,28], iconAnchor:[14,14]}),
