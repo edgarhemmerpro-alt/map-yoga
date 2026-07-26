@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-07-25",
+ "maj": "2026-07-26",
  "stats": {
   "profs": 67,
   "pays": 13
@@ -147,7 +147,7 @@
     "pays": "Guyane française",
     "site": "https://www.astridcandice.com",
     "insta": "https://instagram.com/astridcandice_",
-    "ico": "icons/rec6CV4wS5fkMZzKL.png"
+    "ico": "icons/rec6CV4wS5fkMZzKL.ico"
    }
   },
   {
