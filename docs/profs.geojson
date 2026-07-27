@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-07-26",
+ "maj": "2026-07-27",
  "stats": {
   "profs": 67,
   "pays": 13
@@ -74,8 +74,7 @@
     "ville": "Online",
     "pays": "France",
     "site": "https://nolwennlazzariyoga.com/",
-    "insta": "https://instagram.com/nolwennlazzariyoga",
-    "ico": "icons/rec39oZY0UppNkxrV.png"
+    "insta": "https://instagram.com/nolwennlazzariyoga"
    }
   },
   {
@@ -128,7 +127,7 @@
     "pays": "France",
     "site": "https://www.leyogaavecmarie.com/",
     "insta": "https://instagram.com/marie.morgoun",
-    "ico": "icons/rec5nGAE7tSH2CZ7Z.png"
+    "ico": "icons/rec5nGAE7tSH2CZ7Z.ico"
    }
   },
   {
@@ -540,8 +539,7 @@
     "ville": "Strasbourg",
     "pays": "France",
     "site": "https://www.maisondesoiyoga.com",
-    "insta": "https://instagram.com/maisondesoiyoga",
-    "ico": "icons/recRchmxTDmD4BCVj.png"
+    "insta": "https://instagram.com/maisondesoiyoga"
    }
   },
   {
@@ -952,7 +950,7 @@
     "pays": "France",
     "site": "https://www.a-soi.com",
     "insta": "https://instagram.com/a.soi.yoga",
-    "ico": "icons/recnvTp12X5xWEhYr.png"
+    "ico": "icons/recnvTp12X5xWEhYr.ico"
    }
   },
   {
@@ -989,8 +987,7 @@
     "ville": "Angers",
     "pays": "France",
     "site": "https://www.laurieyoga.fr",
-    "insta": "https://instagram.com/laurieyogafr",
-    "ico": "icons/recohALyeY20ExBjz.png"
+    "insta": "https://instagram.com/laurieyogafr"
    }
   },
   {
@@ -1062,7 +1059,7 @@
     "pays": "France",
     "site": "https://loshakti.com/",
     "insta": "https://instagram.com/laurine.boulier",
-    "ico": "icons/recstJ2GozvxOPU3D.png"
+    "ico": "icons/recstJ2GozvxOPU3D.ico"
    }
   },
   {
