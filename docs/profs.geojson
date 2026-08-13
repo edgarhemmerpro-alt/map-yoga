@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-12",
+ "maj": "2026-08-13",
  "stats": {
   "profs": 67,
   "pays": 13
@@ -400,8 +400,7 @@
     "ville": "Frankfurt Am Main",
     "pays": "Allemagne",
     "site": "https://www.attitude-yoga.com",
-    "insta": "https://instagram.com/caro.attitude.yoga",
-    "ico": "icons/recLKhT7kVIVsuaGX.ico"
+    "insta": "https://instagram.com/caro.attitude.yoga"
    }
   },
   {
