@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-16",
+ "maj": "2026-08-17",
  "stats": {
-  "profs": 65,
+  "profs": 63,
   "pays": 13
  },
  "features": [
@@ -74,8 +74,7 @@
     "ville": "Online",
     "pays": "France",
     "site": "https://nolwennlazzariyoga.com/",
-    "insta": "https://instagram.com/nolwennlazzariyoga",
-    "ico": "icons/rec39oZY0UppNkxrV.png"
+    "insta": "https://instagram.com/nolwennlazzariyoga"
    }
   },
   {
@@ -540,8 +539,7 @@
     "ville": "Strasbourg",
     "pays": "France",
     "site": "https://www.maisondesoiyoga.com",
-    "insta": "https://instagram.com/maisondesoiyoga",
-    "ico": "icons/recRchmxTDmD4BCVj.png"
+    "insta": "https://instagram.com/maisondesoiyoga"
    }
   },
   {
@@ -651,24 +649,6 @@
     "site": "https://atelier-des-elephants.dellas.fr/yoga/",
     "insta": "https://instagram.com/atelierdeselephants",
     "ico": "icons/recYFXCgE18jKbyfG.png"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     6.01122,
-     43.20882
-    ]
-   },
-   "properties": {
-    "nom": "Hélène M.",
-    "ini": "HM",
-    "ville": "Solliès-Toucas",
-    "pays": "France",
-    "site": "https://anahata-yoga.eu",
-    "insta": "https://instagram.com/heln83"
    }
   },
   {
@@ -853,24 +833,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     2.347,
-     48.859
-    ]
-   },
-   "properties": {
-    "nom": "Sandra L.",
-    "ini": "SL",
-    "ville": "Paris",
-    "pays": "France",
-    "site": "https://sandralarue.com",
-    "ico": "icons/recmmwDTV3lDkjPCE.png"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -1.63324,
      49.62868
     ]
@@ -955,8 +917,7 @@
     "ville": "Angers",
     "pays": "France",
     "site": "https://www.laurieyoga.fr",
-    "insta": "https://instagram.com/laurieyogafr",
-    "ico": "icons/recohALyeY20ExBjz.png"
+    "insta": "https://instagram.com/laurieyogafr"
    }
   },
   {
