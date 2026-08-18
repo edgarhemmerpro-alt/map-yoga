@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-17",
+ "maj": "2026-08-18",
  "stats": {
   "profs": 63,
   "pays": 13
@@ -74,7 +74,8 @@
     "ville": "Online",
     "pays": "France",
     "site": "https://nolwennlazzariyoga.com/",
-    "insta": "https://instagram.com/nolwennlazzariyoga"
+    "insta": "https://instagram.com/nolwennlazzariyoga",
+    "ico": "icons/rec39oZY0UppNkxrV.png"
    }
   },
   {
@@ -539,7 +540,8 @@
     "ville": "Strasbourg",
     "pays": "France",
     "site": "https://www.maisondesoiyoga.com",
-    "insta": "https://instagram.com/maisondesoiyoga"
+    "insta": "https://instagram.com/maisondesoiyoga",
+    "ico": "icons/recRchmxTDmD4BCVj.png"
    }
   },
   {
@@ -917,7 +919,8 @@
     "ville": "Angers",
     "pays": "France",
     "site": "https://www.laurieyoga.fr",
-    "insta": "https://instagram.com/laurieyogafr"
+    "insta": "https://instagram.com/laurieyogafr",
+    "ico": "icons/recohALyeY20ExBjz.png"
    }
   },
   {
