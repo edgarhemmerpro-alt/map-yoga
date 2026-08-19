@@ -1,9 +1,9 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-18",
+ "maj": "2026-08-19",
  "stats": {
-  "profs": 63,
-  "pays": 13
+  "profs": 62,
+  "pays": 12
  },
  "features": [
   {
@@ -921,23 +921,6 @@
     "site": "https://www.laurieyoga.fr",
     "insta": "https://instagram.com/laurieyogafr",
     "ico": "icons/recohALyeY20ExBjz.png"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -61.10022,
-     14.6277
-    ]
-   },
-   "properties": {
-    "nom": "Ingrid B.",
-    "ini": "IB",
-    "ville": "Schœlcher",
-    "pays": "Martinique",
-    "insta": "https://instagram.com/joy.yoga_wi"
    }
   },
   {
