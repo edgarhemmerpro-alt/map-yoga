@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-21",
+ "maj": "2026-08-22",
  "stats": {
-  "profs": 62,
+  "profs": 61,
   "pays": 12
  },
  "features": [
@@ -56,7 +56,7 @@
     "pays": "France",
     "site": "https://www.oasisstudioyoga.com/",
     "insta": "https://instagram.com/hortiie",
-    "ico": "icons/rec2cMKE15jLZjKti.ico"
+    "ico": "icons/rec2cMKE15jLZjKti.png"
    }
   },
   {
@@ -128,7 +128,7 @@
     "pays": "France",
     "site": "https://www.leyogaavecmarie.com/",
     "insta": "https://instagram.com/marie.morgoun",
-    "ico": "icons/rec5nGAE7tSH2CZ7Z.ico"
+    "ico": "icons/rec5nGAE7tSH2CZ7Z.png"
    }
   },
   {
@@ -147,7 +147,7 @@
     "pays": "Guyane française",
     "site": "https://www.astridcandice.com",
     "insta": "https://instagram.com/astridcandice_",
-    "ico": "icons/rec6CV4wS5fkMZzKL.ico"
+    "ico": "icons/rec6CV4wS5fkMZzKL.png"
    }
   },
   {
@@ -882,7 +882,7 @@
     "pays": "France",
     "site": "https://www.a-soi.com",
     "insta": "https://instagram.com/a.soi.yoga",
-    "ico": "icons/recnvTp12X5xWEhYr.ico"
+    "ico": "icons/recnvTp12X5xWEhYr.png"
    }
   },
   {
@@ -921,23 +921,6 @@
     "site": "https://www.laurieyoga.fr",
     "insta": "https://instagram.com/laurieyogafr",
     "ico": "icons/recohALyeY20ExBjz.png"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     2.347,
-     48.859
-    ]
-   },
-   "properties": {
-    "nom": "Maxime D.",
-    "ini": "MD",
-    "ville": "Paris",
-    "pays": "France",
-    "insta": "https://instagram.com/pelimaxime"
    }
   },
   {
