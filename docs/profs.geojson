@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-22",
+ "maj": "2026-08-23",
  "stats": {
   "profs": 61,
   "pays": 12
@@ -56,7 +56,7 @@
     "pays": "France",
     "site": "https://www.oasisstudioyoga.com/",
     "insta": "https://instagram.com/hortiie",
-    "ico": "icons/rec2cMKE15jLZjKti.png"
+    "ico": "icons/rec2cMKE15jLZjKti.ico"
    }
   },
   {
@@ -128,7 +128,7 @@
     "pays": "France",
     "site": "https://www.leyogaavecmarie.com/",
     "insta": "https://instagram.com/marie.morgoun",
-    "ico": "icons/rec5nGAE7tSH2CZ7Z.png"
+    "ico": "icons/rec5nGAE7tSH2CZ7Z.ico"
    }
   },
   {
@@ -147,7 +147,7 @@
     "pays": "Guyane française",
     "site": "https://www.astridcandice.com",
     "insta": "https://instagram.com/astridcandice_",
-    "ico": "icons/rec6CV4wS5fkMZzKL.png"
+    "ico": "icons/rec6CV4wS5fkMZzKL.ico"
    }
   },
   {
@@ -882,7 +882,7 @@
     "pays": "France",
     "site": "https://www.a-soi.com",
     "insta": "https://instagram.com/a.soi.yoga",
-    "ico": "icons/recnvTp12X5xWEhYr.png"
+    "ico": "icons/recnvTp12X5xWEhYr.ico"
    }
   },
   {
