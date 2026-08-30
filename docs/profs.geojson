@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-29",
+ "maj": "2026-08-30",
  "stats": {
   "profs": 61,
   "pays": 12
@@ -127,7 +127,7 @@
     "pays": "France",
     "site": "https://www.leyogaavecmarie.com/",
     "insta": "https://instagram.com/marie.morgoun",
-    "ico": "icons/rec5nGAE7tSH2CZ7Z.png"
+    "ico": "icons/rec5nGAE7tSH2CZ7Z.ico"
    }
   },
   {
@@ -146,7 +146,7 @@
     "pays": "Guyane française",
     "site": "https://www.astridcandice.com",
     "insta": "https://instagram.com/astridcandice_",
-    "ico": "icons/rec6CV4wS5fkMZzKL.png"
+    "ico": "icons/rec6CV4wS5fkMZzKL.ico"
    }
   },
   {
@@ -719,7 +719,8 @@
     "ville": "Rebecq",
     "pays": "Belgique",
     "site": "https://www.gayo-yoga.be",
-    "insta": "https://instagram.com/teresa_gayo_yoga"
+    "insta": "https://instagram.com/teresa_gayo_yoga",
+    "ico": "icons/receCRpFIIFYvYgAA.ico"
    }
   },
   {
