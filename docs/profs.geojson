@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-08-30",
+ "maj": "2026-08-31",
  "stats": {
   "profs": 61,
   "pays": 12
@@ -881,7 +881,7 @@
     "pays": "France",
     "site": "https://www.a-soi.com",
     "insta": "https://instagram.com/a.soi.yoga",
-    "ico": "icons/recnvTp12X5xWEhYr.png"
+    "ico": "icons/recnvTp12X5xWEhYr.ico"
    }
   },
   {
