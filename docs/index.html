@@ -417,24 +417,34 @@
     }, {timeout:8000});
   };
 
-  // Recherche d'adresse -> zoom sur les profs les plus proches.
-  // Géocodage via la Base Adresse Nationale (service public FR, sans clé) ;
-  // repli sur OpenStreetMap pour une adresse hors de France (ex : voyage).
-  // C'est le seul appel réseau vers un tiers de la page, déclenché uniquement
-  // quand le visiteur lance une recherche.
+  // Recherche d'adresse (suggestions + validation) -> zoom sur les profs les
+  // plus proches. Géocodage via Photon (OpenStreetMap, sans clé, mondial et
+  // conçu pour l'autocomplétion), avec un léger biais vers la France pour que
+  // les résultats français ressortent en premier. C'est le seul appel réseau
+  // vers un tiers de la page, déclenché uniquement pendant une recherche.
+  var PHOTON = 'https://photon.komoot.io/api/?lang=fr&lat=46.6&lon=2.4&';
+
+  function libelleLieu(p){
+    var t = [], tete = p.name || [p.housenumber, p.street].filter(Boolean).join(' ');
+    if(tete) t.push(tete);
+    var ville = [p.postcode, p.city].filter(Boolean).join(' ');
+    if(ville) t.push(ville);
+    else if(p.state) t.push(p.state);
+    if(p.country) t.push(p.country);
+    return t.filter(function(v, i){ return v && t.indexOf(v) === i; }).join(', ');
+  }
+
+  function versLieux(d){
+    return (d.features || []).map(function(f){
+      return { label:libelleLieu(f.properties),
+               lat:f.geometry.coordinates[1], lon:f.geometry.coordinates[0] };
+    }).filter(function(x){ return x.label; });
+  }
+
   function geocodeAdresse(q){
-    var ban = 'https://api-adresse.data.gouv.fr/search/?limit=1&q=' + encodeURIComponent(q);
-    return fetch(ban).then(function(r){ return r.json(); }).then(function(d){
-      var f = (d.features || [])[0];
-      if(f && f.properties && f.properties.score >= 0.4){
-        var c = f.geometry.coordinates;               // [lon, lat]
-        return { lat:c[1], lon:c[0] };
-      }
-      var osm = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q);
-      return fetch(osm).then(function(r){ return r.json(); }).then(function(a){
-        return (a && a[0]) ? { lat:parseFloat(a[0].lat), lon:parseFloat(a[0].lon) } : null;
-      });
-    });
+    return fetch(PHOTON + 'limit=1&q=' + encodeURIComponent(q))
+      .then(function(r){ return r.json(); })
+      .then(function(d){ return versLieux(d)[0] || null; });
   }
 
   var pinAdr = null;
@@ -462,7 +472,7 @@
       + Math.round(p0.d/1000) + ' km (' + p0.m.props.ville + ').';
   }
 
-  // ---- autocomplétion (suggestions BAN en temps réel) ----
+  // ---- autocomplétion (suggestions Photon en temps réel, mondial) ----
   var champ = document.getElementById('adresse'),
       boite = document.getElementById('suggestions'),
       btnCh = document.getElementById('bChercher'),
@@ -499,13 +509,10 @@
     if(q.length < 3){ fermerSug(); return; }
     minuteur = setTimeout(function(){
       var reqId = ++lastReq;
-      fetch('https://api-adresse.data.gouv.fr/search/?limit=5&q=' + encodeURIComponent(q))
+      fetch(PHOTON + 'limit=5&q=' + encodeURIComponent(q))
         .then(function(r){ return r.json(); }).then(function(d){
           if(reqId !== lastReq) return;                 // ignore une réponse périmée
-          rendreSug((d.features || []).map(function(f){
-            return { label:f.properties.label,
-                     lat:f.geometry.coordinates[1], lon:f.geometry.coordinates[0] };
-          }));
+          rendreSug(versLieux(d));
         }).catch(function(){ /* silencieux : le submit reste possible */ });
     }, 220);
   });
@@ -520,7 +527,7 @@
   champ.addEventListener('blur', function(){ setTimeout(fermerSug, 120); });
 
   // submit : une suggestion choisie -> déjà géré ; sinon géocodage direct
-  // (BAN puis repli OpenStreetMap pour une adresse hors de France)
+  // (Photon, mondial) de ce qui a été tapé
   document.getElementById('recherche').addEventListener('submit', function(e){
     e.preventDefault();
     if(actif>=0 && items[actif]){ choisir(items[actif]); return; }
