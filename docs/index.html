@@ -6,23 +6,26 @@
 <title>Notre communauté à travers le monde</title>
 <link rel="stylesheet" href="vendor/leaflet.css">
 <style>
-  @font-face{font-family:Poppins;font-weight:400;font-display:swap;src:url(fonts/poppins-latin-400-normal.woff2) format('woff2')}
-  @font-face{font-family:Poppins;font-weight:500;font-display:swap;src:url(fonts/poppins-latin-500-normal.woff2) format('woff2')}
-  @font-face{font-family:Poppins;font-weight:600;font-display:swap;src:url(fonts/poppins-latin-600-normal.woff2) format('woff2')}
+  /* Texte : Open Sans — Titres : Satoshi Bold. Auto-hébergés (aucun appel tiers). */
+  @font-face{font-family:'Open Sans';font-weight:400;font-display:swap;src:url(fonts/open-sans-400.woff2) format('woff2')}
+  @font-face{font-family:'Open Sans';font-weight:600;font-display:swap;src:url(fonts/open-sans-600.woff2) format('woff2')}
+  @font-face{font-family:'Open Sans';font-weight:700;font-display:swap;src:url(fonts/open-sans-700.woff2) format('woff2')}
+  @font-face{font-family:'Satoshi';font-weight:700;font-display:swap;src:url(fonts/satoshi-700.woff2) format('woff2')}
 
   :root{
-    --creme:#F7F4EF; --panneau:#EFEBE3; --terre:#E3DED2; --trait:#D5CFC0;
+    --creme:#F8F6F3; --panneau:#EFEBE3; --terre:#E3DED2; --trait:#D5CFC0;
     --vert:#3C5133; --vert-clair:#4C6742; --encre:#17171A; --gris:#78756D;
     --blanc:#fff; --ombre:0 4px 24px rgba(30,28,20,.10);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Poppins,system-ui,sans-serif;background:var(--creme);color:var(--encre);-webkit-font-smoothing:antialiased}
+  body{font-family:'Open Sans',system-ui,sans-serif;background:var(--creme);color:var(--encre);-webkit-font-smoothing:antialiased}
 
   .enveloppe{display:grid;grid-template-columns:300px 1fr;gap:44px;
     align-items:center;padding:40px;min-height:100vh;max-width:1440px;margin:0 auto}
 
   /* ---------- panneau gauche ---------- */
-  h1{font-size:34px;line-height:1.18;font-weight:500;letter-spacing:-.02em;margin-bottom:18px}
+  h1{font-family:'Satoshi','Open Sans',sans-serif;font-size:34px;line-height:1.18;
+    font-weight:700;letter-spacing:-.02em;margin-bottom:18px}
   .sous{font-size:14px;line-height:1.55;color:var(--gris);margin-bottom:38px;max-width:26ch}
   .stat{display:flex;align-items:center;gap:14px;margin-bottom:22px}
   .rond{width:44px;height:44px;border-radius:50%;background:var(--panneau);
@@ -33,9 +36,9 @@
 
   /* ---------- carte ---------- */
   .cadre{position:relative;height:calc(100vh - 80px);min-height:520px;
-    border-radius:20px;overflow:hidden;background:var(--panneau)}
-  #carte{position:absolute;inset:0;background:var(--panneau);outline:none}
-  .leaflet-container{font-family:inherit;background:var(--panneau)}
+    border-radius:20px;overflow:hidden;background:var(--creme)}
+  #carte{position:absolute;inset:0;background:var(--creme);outline:none}
+  .leaflet-container{font-family:inherit;background:var(--creme)}
 
   .pays{fill:var(--terre);stroke:var(--trait);stroke-width:.7}
   /* couches de detail (France) revelees progressivement au zoom, servies
@@ -68,12 +71,28 @@
 
   .flottant{position:absolute;z-index:600;background:var(--blanc);border:0;
     border-radius:11px;box-shadow:var(--ombre);cursor:pointer;
-    font:500 13px Poppins,sans-serif;color:var(--encre);
+    font:500 13px 'Open Sans',sans-serif;color:var(--encre);
     display:flex;align-items:center;gap:8px;padding:11px 15px}
   .flottant:hover{background:#FCFBF8}
   .flottant svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none}
   #bFiltres{top:16px;right:16px}
   #bPosition{bottom:16px;right:16px}
+
+  /* recherche d'adresse */
+  .recherche{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:600;
+    display:flex;align-items:center;gap:7px;background:var(--blanc);border-radius:11px;
+    box-shadow:var(--ombre);padding:5px 6px 5px 13px;width:min(340px,calc(100% - 150px))}
+  .recherche>svg{width:15px;height:15px;stroke:var(--gris);stroke-width:1.7;fill:none;flex:0 0 15px}
+  .recherche input{flex:1;min-width:0;border:0;background:none;outline:none;
+    font:400 13px 'Open Sans',sans-serif;color:var(--encre)}
+  .recherche input::placeholder{color:var(--gris)}
+  .recherche button{flex:0 0 auto;border:0;border-radius:8px;background:var(--vert);color:#fff;
+    font:600 12px 'Open Sans',sans-serif;padding:8px 13px;cursor:pointer;transition:background .15s}
+  .recherche button:hover{background:var(--vert-clair)}
+  .recherche button:disabled{opacity:.55;cursor:default}
+  /* épingle de l'adresse recherchée */
+  .pin-adr{width:16px;height:16px;border-radius:50%;background:var(--vert);
+    border:3px solid var(--blanc);box-shadow:0 2px 8px rgba(40,60,35,.45)}
 
   /* panneau filtres */
   #filtres{position:absolute;top:60px;right:16px;z-index:601;width:216px;
@@ -86,10 +105,10 @@
   #filtres label{display:flex;align-items:center;gap:8px;font-size:13px;
     padding:3px 0;cursor:pointer}
   #filtres input{accent-color:var(--vert);width:14px;height:14px}
-  #filtres select{width:100%;font:400 13px Poppins,sans-serif;padding:7px 9px;
+  #filtres select{width:100%;font:400 13px 'Open Sans',sans-serif;padding:7px 9px;
     border:1px solid #E6E2D8;border-radius:8px;background:var(--blanc);color:var(--encre)}
   #raz{margin-top:14px;width:100%;padding:8px;border:0;border-radius:8px;
-    background:var(--panneau);font:500 12px Poppins,sans-serif;cursor:pointer;color:var(--encre)}
+    background:var(--panneau);font:500 12px 'Open Sans',sans-serif;cursor:pointer;color:var(--encre)}
   #raz:hover{background:#E7E2D8}
 
   /* fiche prof */
@@ -111,7 +130,8 @@
   .liens a:hover{border-bottom-color:var(--vert)}
 
   .legende{position:absolute;bottom:16px;left:16px;z-index:600;font-size:11.5px;
-    color:var(--gris);background:rgba(247,244,239,.85);padding:6px 11px;border-radius:8px}
+    color:var(--gris);background:rgba(248,246,243,.85);padding:6px 11px;border-radius:8px;
+    max-width:calc(100% - 32px)}
 
   /* animation markercluster (extrait minimal, evite d'embarquer la CSS complete) */
   .leaflet-cluster-anim .leaflet-marker-icon,.leaflet-cluster-anim .leaflet-marker-shadow{
@@ -121,7 +141,16 @@
     .enveloppe{grid-template-columns:1fr;gap:26px;padding:22px}
     h1{font-size:26px}.sous{margin-bottom:24px}
     .stat{margin-bottom:14px}
-    .cadre{height:66vh;min-height:400px}
+    .cadre{height:56vh;min-height:340px}
+  }
+  @media (max-width:600px){
+    /* carte moins haute sur téléphone ; recherche pleine largeur en haut,
+       zoom + Filtres passent juste en dessous pour éviter tout chevauchement */
+    .cadre{height:50vh;min-height:300px}
+    .recherche{top:16px;left:16px;right:16px;transform:none;width:auto}
+    .zoom{top:64px}
+    #bFiltres{top:64px}
+    #filtres{top:108px}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
   :focus-visible{outline:2px solid var(--vert);outline-offset:2px}
@@ -148,6 +177,13 @@
 
   <div class="cadre">
     <div id="carte" role="application" aria-label="Carte des professeurs"></div>
+
+    <form class="recherche" id="recherche" role="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input id="adresse" type="text" autocomplete="off"
+             placeholder="Votre adresse, ville…" aria-label="Rechercher une adresse">
+      <button type="submit" id="bChercher">Chercher</button>
+    </form>
 
     <div class="zoom">
       <button id="zPlus"  aria-label="Zoomer">+</button>
@@ -370,6 +406,61 @@
       l.textContent = 'Position indisponible. Autorisez la géolocalisation dans votre navigateur.';
     }, {timeout:8000});
   };
+
+  // Recherche d'adresse -> zoom sur les profs les plus proches.
+  // Géocodage via la Base Adresse Nationale (service public FR, sans clé) ;
+  // repli sur OpenStreetMap pour une adresse hors de France (ex : voyage).
+  // C'est le seul appel réseau vers un tiers de la page, déclenché uniquement
+  // quand le visiteur lance une recherche.
+  function geocodeAdresse(q){
+    var ban = 'https://api-adresse.data.gouv.fr/search/?limit=1&q=' + encodeURIComponent(q);
+    return fetch(ban).then(function(r){ return r.json(); }).then(function(d){
+      var f = (d.features || [])[0];
+      if(f && f.properties && f.properties.score >= 0.4){
+        var c = f.geometry.coordinates;               // [lon, lat]
+        return { lat:c[1], lon:c[0] };
+      }
+      var osm = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q);
+      return fetch(osm).then(function(r){ return r.json(); }).then(function(a){
+        return (a && a[0]) ? { lat:parseFloat(a[0].lat), lon:parseFloat(a[0].lon) } : null;
+      });
+    });
+  }
+
+  var pinAdr = null;
+  document.getElementById('recherche').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = document.getElementById('adresse').value.trim();
+    var l = document.getElementById('legende'), btn = document.getElementById('bChercher');
+    if(!q) return;
+    btn.disabled = true; l.textContent = 'Recherche de « ' + q + ' »…';
+    geocodeAdresse(q).then(function(res){
+      btn.disabled = false;
+      if(!res){ l.textContent = "Adresse introuvable. Précisez la ville ou le code postal."; return; }
+      var moi = L.latLng(res.lat, res.lon);
+      if(pinAdr) carte.removeLayer(pinAdr);
+      pinAdr = L.marker(moi, { interactive:false, keyboard:false, zIndexOffset:1000,
+        icon:L.divIcon({ className:'', html:'<div class="pin-adr"></div>',
+                         iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(carte);
+
+      // profs actuellement affichés (respecte le filtre pays), triés par distance
+      var affiches = tous.filter(function(m){ return groupes.hasLayer(m); });
+      var liste = (affiches.length ? affiches : tous).map(function(m){
+        return { m:m, d:moi.distanceTo(m.getLatLng()) };
+      }).sort(function(a,b){ return a.d - b.d; });
+
+      if(!liste.length){ carte.flyTo(moi, 11, {duration:1.1}); return; }
+      var pts = liste.slice(0, 5).map(function(x){ return x.m.getLatLng(); });
+      pts.push(moi);
+      carte.flyToBounds(L.latLngBounds(pts).pad(0.25), {duration:1.1, maxZoom:12});
+      var p0 = liste[0];
+      l.textContent = 'Le plus proche : ' + p0.m.props.nom + ' à '
+        + Math.round(p0.d/1000) + ' km (' + p0.m.props.ville + ').';
+    }).catch(function(){
+      btn.disabled = false;
+      l.textContent = "La recherche a échoué. Réessayez dans un instant.";
+    });
+  });
 })();
 </script>
 </body>
