@@ -79,7 +79,7 @@
   #bPosition{bottom:16px;right:16px}
 
   /* recherche d'adresse */
-  .recherche{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:600;
+  .recherche{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:605;
     display:flex;align-items:center;gap:7px;background:var(--blanc);border-radius:11px;
     box-shadow:var(--ombre);padding:5px 6px 5px 13px;width:min(340px,calc(100% - 150px))}
   .recherche>svg{width:15px;height:15px;stroke:var(--gris);stroke-width:1.7;fill:none;flex:0 0 15px}
@@ -90,6 +90,14 @@
     font:600 12px 'Open Sans',sans-serif;padding:8px 13px;cursor:pointer;transition:background .15s}
   .recherche button:hover{background:var(--vert-clair)}
   .recherche button:disabled{opacity:.55;cursor:default}
+  /* liste de suggestions (autocomplétion) */
+  .suggestions{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:602;margin:0;
+    padding:5px;list-style:none;background:var(--blanc);border-radius:12px;
+    box-shadow:var(--ombre);max-height:min(50vh,260px);overflow-y:auto;display:none}
+  .suggestions.ouvert{display:block}
+  .suggestions li{padding:9px 11px;border-radius:8px;font-size:13px;line-height:1.35;
+    color:var(--encre);cursor:pointer}
+  .suggestions li:hover,.suggestions li.actif{background:var(--panneau)}
   /* épingle de l'adresse recherchée */
   .pin-adr{width:16px;height:16px;border-radius:50%;background:var(--vert);
     border:3px solid var(--blanc);box-shadow:0 2px 8px rgba(40,60,35,.45)}
@@ -181,8 +189,10 @@
     <form class="recherche" id="recherche" role="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       <input id="adresse" type="text" autocomplete="off"
-             placeholder="Votre adresse, ville…" aria-label="Rechercher une adresse">
+             placeholder="Votre adresse, ville…" aria-label="Rechercher une adresse"
+             role="combobox" aria-expanded="false" aria-controls="suggestions">
       <button type="submit" id="bChercher">Chercher</button>
+      <ul class="suggestions" id="suggestions" role="listbox" aria-label="Suggestions d'adresses"></ul>
     </form>
 
     <div class="zoom">
@@ -428,36 +438,102 @@
   }
 
   var pinAdr = null;
+
+  // pose l'épingle sur un point et cadre sur les profs les plus proches
+  function montrerProches(lat, lon){
+    var l = document.getElementById('legende');
+    var moi = L.latLng(lat, lon);
+    if(pinAdr) carte.removeLayer(pinAdr);
+    pinAdr = L.marker(moi, { interactive:false, keyboard:false, zIndexOffset:1000,
+      icon:L.divIcon({ className:'', html:'<div class="pin-adr"></div>',
+                       iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(carte);
+
+    var affiches = tous.filter(function(m){ return groupes.hasLayer(m); });
+    var liste = (affiches.length ? affiches : tous).map(function(m){
+      return { m:m, d:moi.distanceTo(m.getLatLng()) };
+    }).sort(function(a,b){ return a.d - b.d; });
+
+    if(!liste.length){ carte.flyTo(moi, 11, {duration:1.1}); return; }
+    var pts = liste.slice(0, 5).map(function(x){ return x.m.getLatLng(); });
+    pts.push(moi);
+    carte.flyToBounds(L.latLngBounds(pts).pad(0.25), {duration:1.1, maxZoom:12});
+    var p0 = liste[0];
+    l.textContent = 'Le plus proche : ' + p0.m.props.nom + ' à '
+      + Math.round(p0.d/1000) + ' km (' + p0.m.props.ville + ').';
+  }
+
+  // ---- autocomplétion (suggestions BAN en temps réel) ----
+  var champ = document.getElementById('adresse'),
+      boite = document.getElementById('suggestions'),
+      btnCh = document.getElementById('bChercher'),
+      lastReq = 0, actif = -1, items = [], minuteur;
+
+  function fermerSug(){ boite.classList.remove('ouvert'); boite.replaceChildren(); items=[]; actif=-1;
+    champ.setAttribute('aria-expanded','false'); }
+
+  function choisir(it){ champ.value = it.label; fermerSug(); montrerProches(it.lat, it.lon); }
+
+  function rendreSug(sugs){
+    items = sugs; actif = -1; boite.replaceChildren();
+    if(!sugs.length){ fermerSug(); return; }
+    sugs.forEach(function(it){
+      var li = document.createElement('li');
+      li.textContent = it.label; li.setAttribute('role','option');
+      li.addEventListener('mousedown', function(e){ e.preventDefault(); choisir(it); });
+      boite.appendChild(li);
+    });
+    boite.classList.add('ouvert');
+    champ.setAttribute('aria-expanded','true');
+  }
+
+  function surligner(n){
+    var lis = boite.children;
+    if(actif>=0 && lis[actif]) lis[actif].classList.remove('actif');
+    actif = n;
+    if(actif>=0 && lis[actif]){ lis[actif].classList.add('actif'); lis[actif].scrollIntoView({block:'nearest'}); }
+  }
+
+  champ.addEventListener('input', function(){
+    clearTimeout(minuteur);
+    var q = champ.value.trim();
+    if(q.length < 3){ fermerSug(); return; }
+    minuteur = setTimeout(function(){
+      var reqId = ++lastReq;
+      fetch('https://api-adresse.data.gouv.fr/search/?limit=5&q=' + encodeURIComponent(q))
+        .then(function(r){ return r.json(); }).then(function(d){
+          if(reqId !== lastReq) return;                 // ignore une réponse périmée
+          rendreSug((d.features || []).map(function(f){
+            return { label:f.properties.label,
+                     lat:f.geometry.coordinates[1], lon:f.geometry.coordinates[0] };
+          }));
+        }).catch(function(){ /* silencieux : le submit reste possible */ });
+    }, 220);
+  });
+
+  champ.addEventListener('keydown', function(e){
+    if(!boite.classList.contains('ouvert')) return;
+    if(e.key === 'ArrowDown'){ e.preventDefault(); surligner(Math.min(actif+1, items.length-1)); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); surligner(Math.max(actif-1, 0)); }
+    else if(e.key === 'Enter' && actif>=0){ e.preventDefault(); choisir(items[actif]); }
+    else if(e.key === 'Escape'){ fermerSug(); }
+  });
+  champ.addEventListener('blur', function(){ setTimeout(fermerSug, 120); });
+
+  // submit : une suggestion choisie -> déjà géré ; sinon géocodage direct
+  // (BAN puis repli OpenStreetMap pour une adresse hors de France)
   document.getElementById('recherche').addEventListener('submit', function(e){
     e.preventDefault();
-    var q = document.getElementById('adresse').value.trim();
-    var l = document.getElementById('legende'), btn = document.getElementById('bChercher');
+    if(actif>=0 && items[actif]){ choisir(items[actif]); return; }
+    var q = champ.value.trim(), l = document.getElementById('legende');
     if(!q) return;
-    btn.disabled = true; l.textContent = 'Recherche de « ' + q + ' »…';
+    fermerSug();
+    btnCh.disabled = true; l.textContent = 'Recherche de « ' + q + ' »…';
     geocodeAdresse(q).then(function(res){
-      btn.disabled = false;
+      btnCh.disabled = false;
       if(!res){ l.textContent = "Adresse introuvable. Précisez la ville ou le code postal."; return; }
-      var moi = L.latLng(res.lat, res.lon);
-      if(pinAdr) carte.removeLayer(pinAdr);
-      pinAdr = L.marker(moi, { interactive:false, keyboard:false, zIndexOffset:1000,
-        icon:L.divIcon({ className:'', html:'<div class="pin-adr"></div>',
-                         iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(carte);
-
-      // profs actuellement affichés (respecte le filtre pays), triés par distance
-      var affiches = tous.filter(function(m){ return groupes.hasLayer(m); });
-      var liste = (affiches.length ? affiches : tous).map(function(m){
-        return { m:m, d:moi.distanceTo(m.getLatLng()) };
-      }).sort(function(a,b){ return a.d - b.d; });
-
-      if(!liste.length){ carte.flyTo(moi, 11, {duration:1.1}); return; }
-      var pts = liste.slice(0, 5).map(function(x){ return x.m.getLatLng(); });
-      pts.push(moi);
-      carte.flyToBounds(L.latLngBounds(pts).pad(0.25), {duration:1.1, maxZoom:12});
-      var p0 = liste[0];
-      l.textContent = 'Le plus proche : ' + p0.m.props.nom + ' à '
-        + Math.round(p0.d/1000) + ' km (' + p0.m.props.ville + ').';
+      montrerProches(res.lat, res.lon);
     }).catch(function(){
-      btn.disabled = false;
+      btnCh.disabled = false;
       l.textContent = "La recherche a échoué. Réessayez dans un instant.";
     });
   });
