@@ -419,10 +419,10 @@
 
   // Recherche d'adresse (suggestions + validation) -> zoom sur les profs les
   // plus proches. Géocodage via Photon (OpenStreetMap, sans clé, mondial et
-  // conçu pour l'autocomplétion), avec un léger biais vers la France pour que
-  // les résultats français ressortent en premier. C'est le seul appel réseau
-  // vers un tiers de la page, déclenché uniquement pendant une recherche.
-  var PHOTON = 'https://photon.komoot.io/api/?lang=fr&lat=46.6&lon=2.4&';
+  // conçu pour l'autocomplétion). Classement par importance : les grandes
+  // villes ressortent en premier, en France comme à l'étranger. C'est le seul
+  // appel réseau vers un tiers, déclenché uniquement pendant une recherche.
+  var PHOTON = 'https://photon.komoot.io/api/?lang=fr&';
 
   function libelleLieu(p){
     var t = [], tete = p.name || [p.housenumber, p.street].filter(Boolean).join(' ');
