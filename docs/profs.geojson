@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-09-24",
+ "maj": "2026-09-25",
  "stats": {
   "profs": 61,
   "pays": 12
@@ -920,7 +920,8 @@
     "ville": "Angers",
     "pays": "France",
     "site": "https://www.laurieyoga.fr",
-    "insta": "https://instagram.com/laurieyogafr"
+    "insta": "https://instagram.com/laurieyogafr",
+    "ico": "icons/recohALyeY20ExBjz.png"
    }
   },
   {
