@@ -1,9 +1,9 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-09-30",
+ "maj": "2026-10-01",
  "stats": {
-  "profs": 61,
-  "pays": 12
+  "profs": 101,
+  "pays": 21
  },
  "features": [
   {
@@ -28,6 +28,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     3.1314,
+     50.61932
+    ]
+   },
+   "properties": {
+    "nom": "Sarah T.",
+    "ini": "ST",
+    "ville": "villeneuve d'ascq",
+    "pays": "france",
+    "insta": "https://instagram.com/sarah.mouvement"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      3.0699,
      50.65515
     ]
@@ -38,6 +55,59 @@
     "ville": "La Madeleine",
     "pays": "France",
     "insta": "https://instagram.com/ali.bhagini"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.29261,
+     49.90304
+    ]
+   },
+   "properties": {
+    "nom": "Celia L.",
+    "ini": "CL",
+    "ville": "Amiens",
+    "pays": "France",
+    "insta": "https://instagram.com/celiasana.yoga"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6.1466,
+     46.20176
+    ]
+   },
+   "properties": {
+    "nom": "Audrey K.",
+    "ini": "AK",
+    "ville": "Geneva",
+    "pays": "Switzerland",
+    "insta": "https://instagram.com/audreykng"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.6341,
+     48.99835
+    ]
+   },
+   "properties": {
+    "nom": "Gilles F.",
+    "ini": "GF",
+    "ville": "Rosny-Sur-Seine",
+    "pays": "France",
+    "site": "https://www.api-yoga.fr",
+    "insta": "https://instagram.com/api._.yoga",
+    "ico": "icons/rec29R6kldNVoGOeJ.ico"
    }
   },
   {
@@ -57,6 +127,23 @@
     "site": "https://www.oasisstudioyoga.com/",
     "insta": "https://instagram.com/hortiie",
     "ico": "icons/rec2cMKE15jLZjKti.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.12999,
+     49.50735
+    ]
+   },
+   "properties": {
+    "nom": "Marianne N.",
+    "ini": "MN",
+    "ville": "le havre",
+    "pays": "France",
+    "insta": "https://instagram.com/yogamoula"
    }
   },
   {
@@ -117,6 +204,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     3.08194,
+     45.77746
+    ]
+   },
+   "properties": {
+    "nom": "Elise D.",
+    "ini": "ED",
+    "ville": "clermont-ferrand",
+    "pays": "france",
+    "insta": "https://instagram.com/la.sage.femme"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -1.22131,
      48.06757
     ]
@@ -148,6 +252,42 @@
     "site": "https://www.astridcandice.com",
     "insta": "https://instagram.com/astridcandice_",
     "ico": "icons/rec6CV4wS5fkMZzKL.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.89245,
+     52.37308
+    ]
+   },
+   "properties": {
+    "nom": "Valeria S.",
+    "ini": "VS",
+    "ville": "Amsterdam",
+    "pays": "Netherlands",
+    "site": "https://valeriasaporettiyoga.com",
+    "insta": "https://instagram.com/valeriasaporetti",
+    "ico": "icons/rec76rzHEkdaKCuQZ.jpg"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Annabelle R.",
+    "ini": "AR",
+    "ville": "Paris",
+    "pays": "France",
+    "insta": "https://instagram.com/annabelle_rastoin"
    }
   },
   {
@@ -228,6 +368,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     0.25682,
+     49.56811
+    ]
+   },
+   "properties": {
+    "nom": "Téo G.",
+    "ini": "TG",
+    "ville": "Manéglise",
+    "pays": "France",
+    "insta": "https://instagram.com/teo.gthr"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      1.22125,
      45.85616
     ]
@@ -240,6 +397,25 @@
     "site": "https://www.cabinet-seva.fr",
     "insta": "https://instagram.com/cabinet_seva",
     "ico": "icons/recCG5AdyW8LxkX1A.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -61.06219,
+     14.6478
+    ]
+   },
+   "properties": {
+    "nom": "Jeanne G.",
+    "ini": "JG",
+    "ville": "France",
+    "pays": "France",
+    "site": "https://jeanneguillot.com",
+    "insta": "https://instagram.com/jeanne.guillot.yoga",
+    "ico": "icons/recCS7x2Bbntx6mft.png"
    }
   },
   {
@@ -337,6 +513,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     5.9338,
+     43.1367
+    ]
+   },
+   "properties": {
+    "nom": "Curcovich J.",
+    "ini": "CJ",
+    "ville": "Toulon",
+    "pays": "France",
+    "insta": "https://instagram.com/sunsoul.yoga"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      55.44459,
      -20.90978
     ]
@@ -347,6 +540,40 @@
     "ville": "Saint-Denis",
     "pays": "La Réunion",
     "insta": "https://instagram.com/blueandtender"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.46901,
+     46.30692
+    ]
+   },
+   "properties": {
+    "nom": "Nathalie S.",
+    "ini": "NS",
+    "ville": "Crans Montana",
+    "pays": "Suisse",
+    "insta": "https://instagram.com/nathaliedxb"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3.16299,
+     49.98545
+    ]
+   },
+   "properties": {
+    "nom": "Sophie D.",
+    "ini": "SD",
+    "ville": "Le Ronssoy",
+    "pays": "France",
+    "insta": "https://instagram.com/yoga.avecsophie"
    }
   },
   {
@@ -436,6 +663,42 @@
     "ville": "Nice",
     "pays": "France",
     "insta": "https://instagram.com/naianna.yoga"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.9338,
+     43.1367
+    ]
+   },
+   "properties": {
+    "nom": "Agnès E.",
+    "ini": "AE",
+    "ville": "Toulon",
+    "pays": "France",
+    "site": "https://www.anyes-yoga.com/",
+    "insta": "https://instagram.com/anyes_yoga",
+    "ico": "icons/recMdqH8uOUTh7AEN.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     55.18856,
+     25.07428
+    ]
+   },
+   "properties": {
+    "nom": "Christelle T.",
+    "ini": "CT",
+    "ville": "Dubai",
+    "pays": "United Arab Emirates",
+    "insta": "https://instagram.com/thirietchristelle"
    }
   },
   {
@@ -603,6 +866,25 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     4.36927,
+     50.68287
+    ]
+   },
+   "properties": {
+    "nom": "Daphné D.",
+    "ini": "DD",
+    "ville": "Braine l'Alleud",
+    "pays": "Belgique",
+    "site": "https://www.serenityoga.be",
+    "insta": "https://instagram.com/daphne_serenityoga",
+    "ico": "icons/recWJ8Yipsq3zz20B.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      7.76145,
      48.57983
     ]
@@ -615,6 +897,23 @@
     "site": "https://moovestras.fr",
     "insta": "https://instagram.com/moove.stras",
     "ico": "icons/recWVcYMo8afm4rYD.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.25531,
+     43.71273
+    ]
+   },
+   "properties": {
+    "nom": "Pricilia R.",
+    "ini": "PR",
+    "ville": "Nice",
+    "pays": "France",
+    "insta": "https://instagram.com/pricilia_renou_yoga"
    }
   },
   {
@@ -658,6 +957,24 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     6.01122,
+     43.20882
+    ]
+   },
+   "properties": {
+    "nom": "Hélène M.",
+    "ini": "HM",
+    "ville": "Solliès Toucas",
+    "pays": "France",
+    "site": "https://www.anahata-yoga.eu",
+    "insta": "https://instagram.com/heln83"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -4.49774,
      48.40644
     ]
@@ -675,6 +992,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     6.1253,
+     45.90158
+    ]
+   },
+   "properties": {
+    "nom": "Maelle L.",
+    "ini": "ML",
+    "ville": "Annecy",
+    "pays": "France",
+    "insta": "https://instagram.com/maelle_lehec"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      0.03994,
      45.27439
     ]
@@ -685,6 +1019,76 @@
     "ville": "Chalais",
     "pays": "France",
     "insta": "https://instagram.com/marine_yogashambo"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Gabriela G.",
+    "ini": "GG",
+    "ville": "PARIS",
+    "pays": "France",
+    "site": "https://www.achiq-yoga.com/",
+    "insta": "https://instagram.com/achiq_yoga",
+    "ico": "icons/reccFm1NFdf7LIuNR.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Hasnae R.",
+    "ini": "HR",
+    "ville": "Paris",
+    "pays": "France",
+    "insta": "https://instagram.com/yogawithhasnae"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.92396,
+     48.76806
+    ]
+   },
+   "properties": {
+    "nom": "Philomène B.",
+    "ini": "PB",
+    "ville": "Maurepas",
+    "pays": "France",
+    "insta": "https://instagram.com/philoup.bui"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.45692,
+     43.43461
+    ]
+   },
+   "properties": {
+    "nom": "Elodie D.",
+    "ini": "ED",
+    "ville": "Venerque",
+    "pays": "France",
+    "insta": "https://instagram.com/lonaya_anticoachbienetre"
    }
   },
   {
@@ -730,6 +1134,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     4.77602,
+     51.58878
+    ]
+   },
+   "properties": {
+    "nom": "Elodie L.",
+    "ini": "EL",
+    "ville": "Breda",
+    "pays": "Pays Bas",
+    "insta": "https://instagram.com/elol1991"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -4.49774,
      48.40644
     ]
@@ -740,6 +1161,23 @@
     "ville": "Brest",
     "pays": "France",
     "site": "https://www.escale-yoga.fr/"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.78872,
+     48.91212
+    ]
+   },
+   "properties": {
+    "nom": "Maelle G.",
+    "ini": "MG",
+    "ville": "Jumeauville",
+    "pays": "France",
+    "insta": "https://instagram.com/maellegrvl"
    }
   },
   {
@@ -775,6 +1213,40 @@
     "ville": "Matoury",
     "pays": "Guyane française",
     "insta": "https://instagram.com/yoginipeyi"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3.14829,
+     50.63763
+    ]
+   },
+   "properties": {
+    "nom": "Sarah T.",
+    "ini": "ST",
+    "ville": "Villeneuve d'ascq",
+    "pays": "France",
+    "insta": "https://instagram.com/sarah.mouvement"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.20139,
+     49.05127
+    ]
+   },
+   "properties": {
+    "nom": "Caroline L.",
+    "ini": "CL",
+    "ville": "FRÉPILLON",
+    "pays": "France",
+    "insta": "https://instagram.com/yognrose"
    }
   },
   {
@@ -829,6 +1301,41 @@
     "site": "https://maevaboldron.com",
     "insta": "https://instagram.com/maevaboldron",
     "ico": "icons/recmG6nr0h3KvJn8s.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Sandra L.",
+    "ini": "SL",
+    "ville": "Paris",
+    "pays": "France",
+    "site": "https://sandralarue.com",
+    "ico": "icons/recmmwDTV3lDkjPCE.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3.10094,
+     50.67684
+    ]
+   },
+   "properties": {
+    "nom": "Charlotte B.",
+    "ini": "CB",
+    "ville": "Marcq-en-Barœul",
+    "pays": "France",
+    "insta": "https://instagram.com/charlottebeseme"
    }
   },
   {
@@ -910,6 +1417,25 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     2.20231,
+     48.89809
+    ]
+   },
+   "properties": {
+    "nom": "Audrey B.",
+    "ini": "AB",
+    "ville": "Nanterre",
+    "pays": "France",
+    "site": "https://www.yurbanyoga.com",
+    "insta": "https://instagram.com/yurbanyoga",
+    "ico": "icons/recoPcN0oc9TUQApA.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -0.56161,
      47.46747
     ]
@@ -922,6 +1448,113 @@
     "site": "https://www.laurieyoga.fr",
     "insta": "https://instagram.com/laurieyogafr",
     "ico": "icons/recohALyeY20ExBjz.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.85944,
+     47.82274
+    ]
+   },
+   "properties": {
+    "nom": "Marius W.",
+    "ini": "MW",
+    "ville": "86972 Altenstadt",
+    "pays": "Deutschland",
+    "site": "https://honigbaeryoga.com/",
+    "ico": "icons/recpW6eupYxfd8rnc.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.60351,
+     50.5122
+    ]
+   },
+   "properties": {
+    "nom": "Renelle W.",
+    "ini": "RW",
+    "ville": "Le Touquet-Paris-Plage",
+    "pays": "France",
+    "site": "https://rebelyoga.my.canva.site/",
+    "insta": "https://instagram.com/rebel_rebel_yoga",
+    "ico": "icons/recpxz5xcF1Z2oe3K.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.35249,
+     50.84674
+    ]
+   },
+   "properties": {
+    "nom": "Tatiana G.",
+    "ini": "TG",
+    "ville": "Brussels",
+    "pays": "Belgium",
+    "site": "https://www.yogilati.com",
+    "insta": "https://instagram.com/yogilati_",
+    "ico": "icons/recqcuSQOpfZ8QDgj.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     6.5944,
+     49.25937
+    ]
+   },
+   "properties": {
+    "nom": "Celia Z.",
+    "ini": "CZ",
+    "ville": "Tromborn",
+    "pays": "France",
+    "insta": "https://instagram.com/mzelle_z"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -61.10022,
+     14.6277
+    ]
+   },
+   "properties": {
+    "nom": "Ingrid B.",
+    "ini": "IB",
+    "ville": "Schoelcher",
+    "pays": "Martinique",
+    "insta": "https://instagram.com/joy.yoga_wi"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Maxime D.",
+    "ini": "MD",
+    "ville": "Paris",
+    "pays": "France",
+    "insta": "https://instagram.com/pelimaxime"
    }
   },
   {
@@ -960,6 +1593,23 @@
     "site": "https://loshakti.com/",
     "insta": "https://instagram.com/laurine.boulier",
     "ico": "icons/recstJ2GozvxOPU3D.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     3.22599,
+     50.64692
+    ]
+   },
+   "properties": {
+    "nom": "Melanie N.",
+    "ini": "MN",
+    "ville": "Sailly-lez-Lannoy",
+    "pays": "France",
+    "insta": "https://instagram.com/mel.m.yoga"
    }
   },
   {
@@ -1035,6 +1685,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     55.28304,
+     -21.032
+    ]
+   },
+   "properties": {
+    "nom": "Elise G.",
+    "ini": "EG",
+    "ville": "SAINT PAUL",
+    "pays": "La Réunion",
+    "insta": "https://instagram.com/elisepermayoga"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      12.42945,
      55.73375
     ]
@@ -1081,6 +1748,41 @@
     "ville": "Paris",
     "pays": "France",
     "insta": "https://instagram.com/_anitash_"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.32004,
+     48.85889
+    ]
+   },
+   "properties": {
+    "nom": "Anne G.",
+    "ini": "AG",
+    "ville": "PARIS",
+    "pays": "FRANCE"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.21406,
+     47.34895
+    ]
+   },
+   "properties": {
+    "nom": "Laura B.",
+    "ini": "LB",
+    "ville": "Boécourt",
+    "pays": "Suisse",
+    "site": "https://www.ahimsalaurayoga.ch",
+    "insta": "https://instagram.com/ahimsa_laurayoga",
+    "ico": "icons/recyRShQghrhnVIMY.png"
    }
   },
   {
