@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-10-01",
+ "maj": "2026-10-02",
  "stats": {
-  "profs": 101,
+  "profs": 102,
   "pays": 21
  },
  "features": [
@@ -859,6 +859,23 @@
     "pays": "France",
     "site": "https://www.yogamayucha.fr",
     "insta": "https://instagram.com/fanny.souliez"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.03994,
+     45.27439
+    ]
+   },
+   "properties": {
+    "nom": "Hemmer E.",
+    "ini": "HE",
+    "ville": "Chalais",
+    "pays": "France",
+    "insta": "https://instagram.com/marine_yogashambo"
    }
   },
   {
