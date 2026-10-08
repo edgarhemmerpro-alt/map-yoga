@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-10-07",
+ "maj": "2026-10-08",
  "stats": {
-  "profs": 101,
+  "profs": 106,
   "pays": 21
  },
  "features": [
@@ -108,6 +108,24 @@
     "site": "https://www.api-yoga.fr",
     "insta": "https://instagram.com/api._.yoga",
     "ico": "icons/rec29R6kldNVoGOeJ.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.4338,
+     43.60408
+    ]
+   },
+   "properties": {
+    "nom": "Gatumel E.",
+    "ini": "GE",
+    "ville": "Toulouse",
+    "pays": "France",
+    "site": "https://www.lunaandprana.com/",
+    "insta": "https://instagram.com/lunaandpranayoga"
    }
   },
   {
@@ -325,6 +343,23 @@
     "site": "https://ophelielegohlisse.fr/",
     "insta": "https://instagram.com/olegohlisse",
     "ico": "icons/rec8qXuzM6mrlm5hA.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.03994,
+     45.27439
+    ]
+   },
+   "properties": {
+    "nom": "Edgar H.",
+    "ini": "EH",
+    "ville": "Chalais",
+    "pays": "France",
+    "insta": "https://instagram.com/marine_yogashambo"
    }
   },
   {
@@ -1026,6 +1061,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     4.37005,
+     45.43019
+    ]
+   },
+   "properties": {
+    "nom": "Cloe B.",
+    "ini": "CB",
+    "ville": "Saint Etienne",
+    "pays": "France",
+    "insta": "https://instagram.com/cloe_aronica"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      2.347,
      48.859
     ]
@@ -1379,6 +1431,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     0.03994,
+     45.27439
+    ]
+   },
+   "properties": {
+    "nom": "Marine G.",
+    "ini": "MG",
+    "ville": "Chalais",
+    "pays": "France",
+    "insta": "https://instagram.com/marine_yogashambo"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      2.347,
      48.859
     ]
@@ -1593,6 +1662,25 @@
     "site": "https://loshakti.com/",
     "insta": "https://instagram.com/laurine.boulier",
     "ico": "icons/recstJ2GozvxOPU3D.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.405,
+     43.282
+    ]
+   },
+   "properties": {
+    "nom": "Petithory A.",
+    "ini": "PA",
+    "ville": "Marseille",
+    "pays": "France",
+    "site": "https://annelaurepetithory.com/",
+    "insta": "https://instagram.com/annelaurepetithory",
+    "ico": "icons/rect1o4FlJ1jpCSrU.png"
    }
   },
   {
