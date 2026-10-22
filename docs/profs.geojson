@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-10-21",
+ "maj": "2026-10-22",
  "stats": {
-  "profs": 106,
+  "profs": 109,
   "pays": 21
  },
  "features": [
@@ -379,6 +379,23 @@
     "site": "https://elsayoga.my.canva.site/reloveutionyoga/#page-0",
     "insta": "https://instagram.com/elsavasselin",
     "ico": "icons/rec9VVZNNjWroWu9S.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.70278,
+     48.40781
+    ]
+   },
+   "properties": {
+    "nom": "Anne D.",
+    "ini": "AD",
+    "ville": "Fontainebleau",
+    "pays": "France",
+    "insta": "https://instagram.com/annedontenville"
    }
   },
   {
@@ -1505,6 +1522,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     3.87048,
+     43.61048
+    ]
+   },
+   "properties": {
+    "nom": "Natalie D.",
+    "ini": "ND",
+    "ville": "Montpellier",
+    "pays": "France",
+    "insta": "https://instagram.com/natalie_the_yoga_mum"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -0.56161,
      47.46747
     ]
@@ -1732,6 +1766,23 @@
     "ville": "Arras",
     "pays": "France",
     "insta": "https://instagram.com/celineandthemoon.fr"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.35582,
+     48.80818
+    ]
+   },
+   "properties": {
+    "nom": "Estelle D.",
+    "ini": "ED",
+    "ville": "Le Kremlin-Bicêtre",
+    "pays": "France",
+    "insta": "https://instagram.com/stelladodo9"
    }
   },
   {
