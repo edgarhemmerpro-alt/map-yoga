@@ -1,9 +1,9 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-11-09",
+ "maj": "2026-11-10",
  "stats": {
-  "profs": 109,
-  "pays": 21
+  "profs": 110,
+  "pays": 20
  },
  "features": [
   {
@@ -215,6 +215,23 @@
     "ville": "Neuilly-sur-Seine",
     "pays": "France",
     "insta": "https://instagram.com/jennymoulyrespire"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     1.22125,
+     45.85616
+    ]
+   },
+   "properties": {
+    "nom": "Lisa S.",
+    "ini": "LS",
+    "ville": "limoges",
+    "pays": "France",
+    "insta": "https://instagram.com/lisa.sottier"
    }
   },
   {
@@ -758,23 +775,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -7.98916,
-     31.62583
-    ]
-   },
-   "properties": {
-    "nom": "Sarah B.",
-    "ini": "SB",
-    "ville": "Marrakech",
-    "pays": "Maroc",
-    "insta": "https://instagram.com/sarabee_yogatherapie"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      2.20231,
      48.89809
     ]
@@ -1230,6 +1230,23 @@
     "ville": "Brest",
     "pays": "France",
     "site": "https://www.escale-yoga.fr/"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.347,
+     48.859
+    ]
+   },
+   "properties": {
+    "nom": "Carla T.",
+    "ini": "CT",
+    "ville": "Paris",
+    "pays": "France",
+    "insta": "https://instagram.com/carla.tonin.yoga"
    }
   },
   {
