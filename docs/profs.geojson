@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-11-18",
+ "maj": "2026-11-19",
  "stats": {
-  "profs": 109,
+  "profs": 110,
   "pays": 20
  },
  "features": [
@@ -145,6 +145,23 @@
     "site": "https://www.oasisstudioyoga.com/",
     "insta": "https://instagram.com/hortiie",
     "ico": "icons/rec2cMKE15jLZjKti.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.12999,
+     49.50735
+    ]
+   },
+   "properties": {
+    "nom": "Marianne N.",
+    "ini": "MN",
+    "ville": "Sainte Adresse",
+    "pays": "France",
+    "insta": "https://instagram.com/moove_feel_bloom"
    }
   },
   {
