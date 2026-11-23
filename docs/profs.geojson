@@ -1,8 +1,8 @@
 {
  "type": "FeatureCollection",
- "maj": "2026-11-22",
+ "maj": "2026-11-23",
  "stats": {
-  "profs": 110,
+  "profs": 111,
   "pays": 20
  },
  "features": [
@@ -1196,6 +1196,23 @@
     "site": "https://www.gayo-yoga.be",
     "insta": "https://instagram.com/teresa_gayo_yoga",
     "ico": "icons/receCRpFIIFYvYgAA.ico"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     7.25531,
+     43.71273
+    ]
+   },
+   "properties": {
+    "nom": "Marie C.",
+    "ini": "MC",
+    "ville": "Nice",
+    "pays": "France",
+    "insta": "https://instagram.com/marie_lumiere_de_soi_yoga"
    }
   },
   {
